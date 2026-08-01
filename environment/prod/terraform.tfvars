@@ -5,6 +5,11 @@ rgs = {
     location = "centralindia"
 
   }
+   rgs2 = {
+    name     = "jaya"
+    location = "centralindia"
+
+  }
 }
 
 vnet = {
