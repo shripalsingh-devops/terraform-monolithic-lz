@@ -1,7 +1,7 @@
 rgs = {
 
   rgs1 = {
-    name     = "shri"
+    name     = "shri-prod-rg"
     location = "centralindia"
 
   }
