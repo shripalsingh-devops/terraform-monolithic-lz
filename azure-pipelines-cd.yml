@@ -1,0 +1,28 @@
+trigger: none
+pool: 
+  name: 'agent-pool'
+  
+steps:
+  - checkout: self
+  - task: TerraformInstaller@1
+    displayName: 'Install Terraform'
+    inputs: 
+      terraformVersion: '1.13.3'
+  - task: TerraformTask@5
+    displayName: 'Terraform Init'
+    inputs: 
+      provider: 'azurerm'
+      command: 'init'
+      workingDirectory: '$(Build.SourcesDirectory)/environment/prod'
+      backendServiceArm: 'shri-scn'
+      backendAzureRmResourceGroupName: 'shri'
+      backendAzureRmStorageAccountName: 'abcd123454321'
+      backendAzureRmContainerName: 'container'
+      backendAzureRmKey: 'pipeline.tfstate'
+  - task: TerraformTask@5
+    displayName: 'Terraform Apply'
+    inputs:
+      provider: 'azurerm'
+      command: 'apply'
+      workingDirectory: '$(Build.SourcesDirectory)/environment/prod'
+      environmentServiceNameAzureRM: 'shri-scn'
